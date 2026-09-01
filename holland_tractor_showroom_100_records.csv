@@ -1,0 +1,101 @@
+Machine_ID,Category,Brand,Model,Year,Power_HP,Working_Hours,Price_EUR,Condition,Fuel_Type,Transmission,Location_Netherlands,Status
+NL-001,Tractor,New Holland,T5.120,2025,263,1701,186731,Used - Excellent,Diesel,Hydrostatic,Assen,Available Soon
+NL-002,Mower,Krone,EasyCut B 950,2020,247,61,127630,New,Diesel,CVT,Zwolle,In Stock
+NL-003,Baler,Krone,Fortima F1250,2024,82,5168,114807,Used - Excellent,Diesel,Hydrostatic,Zwolle,Reserved
+NL-004,Combine Harvester,John Deere,S770,2018,442,5597,389267,New,Diesel,Manual,Zwolle,Available Soon
+NL-005,Tractor,Fendt,724 Vario,2017,395,6063,136002,Used - Good,Diesel,Hydrostatic,Utrecht,In Stock
+NL-006,Forage Harvester,Fendt,Katana 850,2024,1049,1927,470690,Demo,Diesel,Hydrostatic,Utrecht,Reserved
+NL-007,Forage Harvester,John Deere,9700,2025,1027,435,431233,Used - Excellent,Diesel,PowerShift,Heerenveen,In Stock
+NL-008,Cultivator,Kuhn,Cultimer L 300,2026,183,7055,38889,Demo,Diesel,PowerShift,Arnhem,Sold
+NL-009,Tractor,New Holland,T5.120,2024,333,4132,231764,Demo,Diesel,Manual,Eindhoven,Available Soon
+NL-010,Rake,Krone,Swadro TC 1370,2023,276,3338,117368,Used - Good,Diesel,Manual,Lelystad,In Stock
+NL-011,Tractor,Fendt,724 Vario,2025,334,8040,265645,Used - Good,Diesel,PowerShift,Zwolle,Available Soon
+NL-012,Baler,Krone,Comprima CF155 XC,2023,210,570,90163,Used - Good,Diesel,Manual,Arnhem,In Stock
+NL-013,Baler,Krone,Fortima F1250,2024,211,3019,58925,Demo,Diesel,Hydrostatic,Emmeloord,Reserved
+NL-014,Baler,New Holland,Roll Baler 125,2020,174,6758,37669,Used - Excellent,Diesel,Hydrostatic,Wageningen,In Stock
+NL-015,Tractor,New Holland,T7.270,2026,100,1380,173287,Used - Excellent,Diesel,PowerShift,Emmeloord,In Stock
+NL-016,Mower,Krone,EasyCut B 950,2022,189,2555,82395,New,Diesel,Manual,Breda,Available Soon
+NL-017,Plough,Lemken,Diamant 16,2025,234,3672,47353,Demo,Diesel,PowerShift,Tilburg,Reserved
+NL-018,Tractor,New Holland,T7.270,2019,313,2237,230257,Used - Good,Diesel,Hydrostatic,Utrecht,Sold
+NL-019,Sprayer,Amazone,UX 4200,2017,200,1758,168567,Demo,Diesel,CVT,Heerenveen,Reserved
+NL-020,Seeder,Amazone,Cirrus 6003,2017,190,439,152492,Demo,Diesel,Manual,Breda,Reserved
+NL-021,Baler,Krone,Fortima F1250,2024,163,7664,40908,Used - Excellent,Diesel,PowerShift,Tilburg,Sold
+NL-022,Forage Harvester,John Deere,9500,2024,1088,3842,356380,New,Diesel,Hydrostatic,Lelystad,Sold
+NL-023,Seeder,Amazone,Cirrus 6003,2025,144,809,35929,Demo,Diesel,PowerShift,Arnhem,In Stock
+NL-024,Tractor,Fendt,516 Vario,2025,371,2276,112337,Used - Excellent,Diesel,PowerShift,Utrecht,Reserved
+NL-025,Forage Harvester,John Deere,9500,2018,995,6298,397100,Used - Good,Diesel,PowerShift,Apeldoorn,Sold
+NL-026,Tractor,Case IH,Maxxum 125,2023,337,4733,185443,Demo,Diesel,PowerShift,Apeldoorn,Available Soon
+NL-027,Baler,Krone,Fortima F1250,2025,110,4506,94107,New,Diesel,PowerShift,Groningen,In Stock
+NL-028,Tractor,New Holland,T7.270,2022,332,6704,224260,Used - Excellent,Diesel,CVT,Apeldoorn,Sold
+NL-029,Combine Harvester,John Deere,S770,2025,537,3567,420066,New,Diesel,Manual,Eindhoven,Sold
+NL-030,Sprayer,John Deere,R732i,2021,225,2192,217542,New,Diesel,CVT,Utrecht,Sold
+NL-031,Tractor,New Holland,T8.410,2022,130,3059,253996,New,Diesel,Manual,Zwolle,In Stock
+NL-032,Combine Harvester,New Holland,CX6.90,2021,411,4216,204615,New,Diesel,CVT,Utrecht,Reserved
+NL-033,Forage Harvester,John Deere,9700,2018,465,3873,210047,New,Diesel,Manual,Emmeloord,In Stock
+NL-034,Plough,Lemken,Juwel 8,2022,193,7491,103830,New,Diesel,Hydrostatic,Apeldoorn,Sold
+NL-035,Seeder,Väderstad,Rapid A 400S,2018,218,6150,85852,Used - Good,Diesel,Hydrostatic,Zwolle,Reserved
+NL-036,Tractor,John Deere,8R 310,2021,323,5435,61203,Used - Good,Diesel,CVT,Zwolle,Available Soon
+NL-037,Combine Harvester,New Holland,CR7.90,2025,549,5631,130627,Used - Excellent,Diesel,CVT,Venlo,In Stock
+NL-038,Tractor,Fendt,828 Vario,2017,162,2079,86007,Used - Good,Diesel,Manual,Lelystad,Available Soon
+NL-039,Sprayer,John Deere,R962i,2023,182,6313,163315,Demo,Diesel,Hydrostatic,Breda,Sold
+NL-040,Tedder,Kuhn,GF 10802 T,2025,82,485,60094,Demo,Diesel,Manual,Assen,Sold
+NL-041,Tractor,Massey Ferguson,7719 S,2021,111,7865,59350,Demo,Diesel,Manual,Apeldoorn,Sold
+NL-042,Seeder,Väderstad,Spirit 600C,2019,251,642,41723,Used - Good,Diesel,Manual,Breda,Reserved
+NL-043,Tractor,John Deere,8R 310,2020,105,7729,219589,New,Diesel,PowerShift,Breda,Sold
+NL-044,Mower,Krone,EasyCut F 320,2022,281,3829,116614,Used - Good,Diesel,Manual,Heerenveen,Sold
+NL-045,Combine Harvester,John Deere,X9 1000,2024,433,7787,360788,Used - Good,Diesel,PowerShift,Dronten,Available Soon
+NL-046,Tractor,Fendt,724 Vario,2022,348,6710,56392,New,Diesel,PowerShift,Emmeloord,Reserved
+NL-047,Combine Harvester,John Deere,X9 1000,2019,529,1670,258944,New,Diesel,PowerShift,Heerenveen,Reserved
+NL-048,Sprayer,John Deere,R732i,2023,161,8483,173094,Used - Excellent,Hybrid,CVT,Emmeloord,Sold
+NL-049,Cultivator,Kuhn,Excelerator 600,2025,149,4303,99453,Used - Good,Diesel,CVT,Venlo,Sold
+NL-050,Tractor,Fendt,828 Vario,2025,249,4698,132408,Used - Good,Diesel,PowerShift,Utrecht,Sold
+NL-051,Mower,Krone,EasyCut F 320,2026,211,7884,14476,Demo,Diesel,Manual,Assen,Sold
+NL-052,Cultivator,Kuhn,Excelerator 600,2019,182,5175,19736,Used - Excellent,Diesel,PowerShift,Lelystad,In Stock
+NL-053,Baler,New Holland,BigBaler 1290,2017,250,6156,117324,New,Diesel,Manual,Zwolle,Sold
+NL-054,Sprayer,Amazone,UX 5200,2026,189,4085,227154,Used - Excellent,Diesel,Manual,Arnhem,In Stock
+NL-055,Cultivator,Kuhn,Excelerator 600,2021,68,4959,111928,New,Diesel,Manual,Arnhem,Available Soon
+NL-056,Tractor,New Holland,T5.120,2020,384,5896,191038,Demo,Diesel,Manual,Emmeloord,In Stock
+NL-057,Tedder,Kuhn,GF 10802 T,2024,299,5132,35033,Used - Good,Diesel,PowerShift,Dronten,Reserved
+NL-058,Forage Harvester,John Deere,9500,2022,968,5307,474427,Demo,Diesel,Hydrostatic,Apeldoorn,Sold
+NL-059,Tractor,Massey Ferguson,5713 S,2022,337,5756,112716,Demo,Diesel,Hydrostatic,Groningen,Sold
+NL-060,Baler,Krone,Fortima F1250,2019,225,7086,111093,Used - Good,Diesel,Manual,Heerenveen,In Stock
+NL-061,Combine Harvester,New Holland,CR7.90,2021,386,2401,353019,Used - Good,Diesel,PowerShift,Apeldoorn,Sold
+NL-062,Sprayer,Amazone,Pantera 4504,2021,347,4828,102305,Demo,Hybrid,Hydrostatic,Utrecht,In Stock
+NL-063,Sprayer,Amazone,Pantera 4504,2023,333,5538,156289,New,Hybrid,Hydrostatic,Wageningen,Sold
+NL-064,Forage Harvester,John Deere,9500,2022,810,1003,519856,Demo,Diesel,PowerShift,Lelystad,Reserved
+NL-065,Sprayer,Amazone,Pantera 4504,2019,329,5492,136105,Demo,Diesel,Hydrostatic,Apeldoorn,In Stock
+NL-066,Tractor,John Deere,7R 250,2018,212,4421,221794,Used - Good,Diesel,CVT,Assen,Sold
+NL-067,Tedder,Kuhn,GF 13012 T,2021,167,6072,146988,New,Diesel,PowerShift,Eindhoven,In Stock
+NL-068,Tractor,New Holland,T8.410,2020,179,7613,141503,Used - Excellent,Diesel,PowerShift,Venlo,Reserved
+NL-069,Tractor,New Holland,T7.270,2025,390,2203,164324,New,Diesel,CVT,Zwolle,Available Soon
+NL-070,Tractor,John Deere,7R 250,2025,194,3810,199240,Demo,Diesel,Manual,Apeldoorn,Reserved
+NL-071,Combine Harvester,New Holland,CR7.90,2021,560,8020,371496,Used - Good,Diesel,Manual,Lelystad,Available Soon
+NL-072,Tractor,Fendt,516 Vario,2022,111,4179,181007,Demo,Diesel,PowerShift,Apeldoorn,Reserved
+NL-073,Baler,New Holland,BigBaler 1290,2020,182,907,64854,Demo,Diesel,CVT,Venlo,Reserved
+NL-074,Baler,Krone,BiG Pack 1290,2025,237,5346,36890,Demo,Diesel,Manual,Breda,Reserved
+NL-075,Combine Harvester,John Deere,X9 1000,2025,342,2876,160930,Used - Good,Diesel,Hydrostatic,Breda,In Stock
+NL-076,Seeder,Väderstad,Rapid A 400S,2024,154,3966,33784,Used - Excellent,Diesel,Hydrostatic,Eindhoven,Sold
+NL-077,Baler,New Holland,BigBaler 1290,2024,134,2259,60478,Used - Good,Diesel,Manual,Breda,Available Soon
+NL-078,Sprayer,Amazone,UX 5200,2025,307,3117,260356,Used - Excellent,Hybrid,PowerShift,Venlo,Sold
+NL-079,Tractor,Fendt,516 Vario,2017,393,4613,71011,Used - Good,Diesel,PowerShift,Dronten,Reserved
+NL-080,Sprayer,Amazone,UX 5200,2019,327,7512,163493,Used - Excellent,Diesel,CVT,Assen,Sold
+NL-081,Plough,Lemken,Juwel 8,2026,89,8043,120505,New,Diesel,Manual,Groningen,Reserved
+NL-082,Sprayer,Amazone,UX 5200,2023,173,2559,192064,Used - Good,Diesel,CVT,Arnhem,In Stock
+NL-083,Tractor,John Deere,8R 310,2026,148,4234,147543,Used - Good,Diesel,CVT,Dronten,Sold
+NL-084,Rake,Krone,Swadro 1400,2023,73,3287,122845,Used - Excellent,Diesel,PowerShift,Groningen,Available Soon
+NL-085,Tractor,Massey Ferguson,6713 S,2025,290,6933,96553,Demo,Diesel,Hydrostatic,Heerenveen,Reserved
+NL-086,Cultivator,Kuhn,Cultimer L 300,2024,103,7913,92925,New,Diesel,PowerShift,Venlo,Sold
+NL-087,Tractor,New Holland,T5.120,2026,140,2609,147782,New,Diesel,PowerShift,Groningen,Available Soon
+NL-088,Tractor,Massey Ferguson,5713 S,2025,319,2393,62995,Used - Good,Diesel,Manual,Venlo,Reserved
+NL-089,Forage Harvester,Fendt,Katana 850,2025,459,7559,429862,Used - Good,Diesel,Manual,Arnhem,Sold
+NL-090,Tractor,New Holland,T8.410,2020,173,5901,201708,Demo,Diesel,Hydrostatic,Tilburg,In Stock
+NL-091,Plough,Lemken,Diamant 16,2021,221,1311,97524,Demo,Diesel,Hydrostatic,Apeldoorn,In Stock
+NL-092,Rake,Krone,Swadro 1400,2017,120,1339,89793,New,Diesel,CVT,Eindhoven,Available Soon
+NL-093,Sprayer,John Deere,R732i,2026,177,7506,171248,Demo,Hybrid,CVT,Dronten,Reserved
+NL-094,Tractor,Fendt,516 Vario,2023,113,1525,82565,Used - Excellent,Diesel,Manual,Lelystad,In Stock
+NL-095,Mower,Krone,EasyCut F 320,2026,298,1980,30645,Used - Good,Diesel,PowerShift,Zwolle,Available Soon
+NL-096,Tractor,Case IH,Puma 150,2024,264,3993,242947,Demo,Diesel,PowerShift,Eindhoven,Reserved
+NL-097,Forage Harvester,John Deere,9700,2020,492,3039,436352,Demo,Diesel,PowerShift,Assen,In Stock
+NL-098,Sprayer,John Deere,R962i,2023,271,7930,224809,New,Diesel,PowerShift,Utrecht,In Stock
+NL-099,Sprayer,Amazone,UX 4200,2019,269,4847,275678,Used - Excellent,Hybrid,Manual,Zwolle,Available Soon
+NL-100,Mower,Krone,EasyCut F 320,2022,198,2745,18893,New,Diesel,Manual,Assen,Sold
