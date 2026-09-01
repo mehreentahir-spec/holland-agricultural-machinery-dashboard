@@ -1,0 +1,1945 @@
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+Holland Agricultural Machinery Dashboard
+</title>
+
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+
+
+<style>
+
+/* =========================================================
+   GENERAL
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+
+    margin: 0;
+
+    font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+    background: #F3F7F3;
+
+    color: #17221D;
+
+}
+
+.container {
+
+    width: 94%;
+
+    max-width: 1500px;
+
+    margin: auto;
+
+    padding-bottom: 50px;
+
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.header {
+
+    margin-top: 25px;
+
+    padding: 35px;
+
+    border-radius: 22px;
+
+    color: white;
+
+    background:
+    linear-gradient(
+        135deg,
+        #12372A,
+        #2E8B57
+    );
+
+    box-shadow:
+    0 8px 25px
+    rgba(18,55,42,0.18);
+
+}
+
+.header h1 {
+
+    margin: 0;
+
+    font-size: 34px;
+
+}
+
+.header p {
+
+    margin: 10px 0 0;
+
+    font-size: 16px;
+
+    opacity: .9;
+
+}
+
+
+/* =========================================================
+   FILTERS
+   ========================================================= */
+
+.filters {
+
+    background: white;
+
+    margin-top: 20px;
+
+    padding: 22px;
+
+    border-radius: 18px;
+
+    display: grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap: 15px;
+
+    box-shadow:
+    0 5px 20px
+    rgba(0,0,0,.06);
+
+}
+
+.filter label {
+
+    display: block;
+
+    font-weight: bold;
+
+    color: #12372A;
+
+    margin-bottom: 7px;
+
+}
+
+select,
+input {
+
+    width: 100%;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    border:
+    1px solid #D7E0DA;
+
+    background: #FAFCFA;
+
+    font-size: 14px;
+
+}
+
+select:focus,
+input:focus {
+
+    outline: none;
+
+    border-color: #2E8B57;
+
+}
+
+
+/* =========================================================
+   RESET BUTTON
+   ========================================================= */
+
+.reset-area {
+
+    text-align: right;
+
+    margin-top: 12px;
+
+}
+
+.reset-btn {
+
+    border: none;
+
+    padding: 12px 22px;
+
+    border-radius: 10px;
+
+    background: #C76D4F;
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+.reset-btn:hover {
+
+    opacity: .85;
+
+}
+
+
+/* =========================================================
+   KPI
+   ========================================================= */
+
+.kpis {
+
+    display: grid;
+
+    grid-template-columns:
+    repeat(5,1fr);
+
+    gap: 16px;
+
+    margin-top: 20px;
+
+}
+
+.kpi {
+
+    background: white;
+
+    padding: 22px;
+
+    border-radius: 18px;
+
+    border-top:
+    5px solid #2E8B57;
+
+    box-shadow:
+    0 5px 18px
+    rgba(0,0,0,.06);
+
+    transition: .2s;
+
+}
+
+.kpi:hover {
+
+    transform:
+    translateY(-4px);
+
+}
+
+.kpi-title {
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    color: #4F8A7A;
+
+}
+
+.kpi-value {
+
+    font-size: 26px;
+
+    font-weight: bold;
+
+    margin-top: 8px;
+
+    color: #12372A;
+
+}
+
+
+/* =========================================================
+   CHARTS
+   ========================================================= */
+
+.chart-grid {
+
+    display: grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap: 20px;
+
+    margin-top: 20px;
+
+}
+
+.chart-card {
+
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 10px;
+
+    box-shadow:
+    0 5px 18px
+    rgba(0,0,0,.06);
+
+}
+
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+.table-card {
+
+    background: white;
+
+    margin-top: 20px;
+
+    padding: 22px;
+
+    border-radius: 18px;
+
+    box-shadow:
+    0 5px 18px
+    rgba(0,0,0,.06);
+
+}
+
+.table-title {
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    color: #12372A;
+
+    margin-bottom: 15px;
+
+}
+
+.table-wrapper {
+
+    overflow-x: auto;
+
+    max-height: 500px;
+
+}
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+}
+
+th {
+
+    background: #12372A;
+
+    color: white;
+
+    padding: 12px;
+
+    text-align: left;
+
+    position: sticky;
+
+    top: 0;
+
+}
+
+td {
+
+    padding: 11px;
+
+    border-bottom:
+    1px solid #E7ECE8;
+
+}
+
+tr:hover {
+
+    background: #F1F7F3;
+
+}
+
+
+/* =========================================================
+   NO RESULTS
+   ========================================================= */
+
+.no-results {
+
+    display: none;
+
+    text-align: center;
+
+    padding: 30px;
+
+    color: #C76D4F;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.footer {
+
+    text-align: center;
+
+    margin-top: 30px;
+
+    padding: 20px;
+
+    color: #4F8A7A;
+
+    font-size: 13px;
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media(max-width:1000px) {
+
+    .kpis {
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+    }
+
+    .filters {
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+    }
+
+    .chart-grid {
+
+        grid-template-columns:
+        1fr;
+
+    }
+
+}
+
+@media(max-width:600px) {
+
+    .kpis,
+    .filters {
+
+        grid-template-columns:
+        1fr;
+
+    }
+
+    .header h1 {
+
+        font-size: 25px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<!-- =====================================================
+     HEADER
+     ===================================================== -->
+
+<div class="header">
+
+<h1>
+🚜 Holland Agricultural Machinery
+</h1>
+
+<p>
+Tractor Showroom & Harvesting Machinery Analytics
+</p>
+
+</div>
+
+
+<!-- =====================================================
+     FILTERS
+     ===================================================== -->
+
+<div class="filters">
+
+
+<div class="filter">
+
+<label>
+🚜 Category
+</label>
+
+<select
+id="categoryFilter"
+onchange="updateDashboard()">
+
+<option value="All">
+All Categories
+</option>
+
+</select>
+
+</div>
+
+
+<div class="filter">
+
+<label>
+🏭 Brand
+</label>
+
+<select
+id="brandFilter"
+onchange="updateDashboard()">
+
+<option value="All">
+All Brands
+</option>
+
+</select>
+
+</div>
+
+
+<div class="filter">
+
+<label>
+📦 Status
+</label>
+
+<select
+id="statusFilter"
+onchange="updateDashboard()">
+
+<option value="All">
+All Status
+</option>
+
+</select>
+
+</div>
+
+
+<div class="filter">
+
+<label>
+🔎 Search
+</label>
+
+<input
+id="searchBox"
+type="text"
+placeholder="Search tractor, brand or model..."
+oninput="updateDashboard()">
+
+</div>
+
+
+</div>
+
+
+<div class="reset-area">
+
+<button
+class="reset-btn"
+onclick="resetFilters()">
+
+↻ Reset Filters
+
+</button>
+
+</div>
+
+
+<!-- =====================================================
+     KPI CARDS
+     ===================================================== -->
+
+<div class="kpis">
+
+
+<div class="kpi">
+
+<div class="kpi-title">
+TOTAL MACHINES
+</div>
+
+<div
+class="kpi-value"
+id="totalMachines">
+0
+</div>
+
+</div>
+
+
+<div class="kpi">
+
+<div class="kpi-title">
+INVENTORY VALUE
+</div>
+
+<div
+class="kpi-value"
+id="inventoryValue">
+€0
+</div>
+
+</div>
+
+
+<div class="kpi">
+
+<div class="kpi-title">
+AVERAGE PRICE
+</div>
+
+<div
+class="kpi-value"
+id="averagePrice">
+€0
+</div>
+
+</div>
+
+
+<div class="kpi">
+
+<div class="kpi-title">
+AVG WORKING HOURS
+</div>
+
+<div
+class="kpi-value"
+id="averageHours">
+0
+</div>
+
+</div>
+
+
+<div class="kpi">
+
+<div class="kpi-title">
+IN STOCK
+</div>
+
+<div
+class="kpi-value"
+id="inStock">
+0
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- =====================================================
+     CHARTS
+     ===================================================== -->
+
+<div class="chart-grid">
+
+
+<div class="chart-card">
+
+<div id="categoryChart"></div>
+
+</div>
+
+
+<div class="chart-card">
+
+<div id="brandChart"></div>
+
+</div>
+
+
+<div class="chart-card">
+
+<div id="priceChart"></div>
+
+</div>
+
+
+<div class="chart-card">
+
+<div id="statusChart"></div>
+
+</div>
+
+
+<div class="chart-card">
+
+<div id="scatterChart"></div>
+
+</div>
+
+
+<div class="chart-card">
+
+<div id="conditionChart"></div>
+
+</div>
+
+
+</div>
+
+
+<!-- =====================================================
+     TABLE
+     ===================================================== -->
+
+<div class="table-card">
+
+<div class="table-title">
+
+📋 Machinery Inventory
+
+</div>
+
+
+<div
+id="noResults"
+class="no-results">
+
+⚠️ No machinery matches your selected filters.
+
+</div>
+
+
+<div class="table-wrapper">
+
+<table id="dataTable">
+
+<thead>
+
+<tr>
+
+<th>Brand</th>
+<th>Model</th>
+<th>Category</th>
+<th>Year</th>
+<th>Price (€)</th>
+<th>Working Hours</th>
+<th>Condition</th>
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<div class="footer">
+
+🇳🇱 Holland Agricultural Machinery
+<br>
+Interactive Tractor & Harvesting Machinery Dashboard
+
+</div>
+
+
+</div>
+
+
+<script>
+
+
+// ==========================================================
+// DATA
+// ==========================================================
+
+const originalData = [{"Machine_ID": "NL-001", "Category": "Tractor", "Brand": "New Holland", "Model": "T5.120", "Year": 2025, "Power_HP": 263, "Working_Hours": 1701, "Price_EUR": 186731, "Condition": "Used - Excellent", "Fuel_Type": "Diesel", "Transmission": "Hydrostatic", "Location_Netherlands": "Assen", "Status": "Available Soon"}, {"Machine_ID": "NL-002", "Category": "Mower", "Brand": "Krone", "Model": "EasyCut B 950", "Year": 2020, "Power_HP": 247, "Working_Hours": 61, "Price_EUR": 127630, "Condition": "New", "Fuel_Type": "Diesel", "Transmission": "CVT", "Location_Netherlands": "Zwolle", "Status": "In Stock"}, {"Machine_ID": "NL-003", "Category": "Baler", "Brand": "Krone", "Model": "Fortima F1250", "Year": 2024, "Power_HP": 82, "Working_Hours": 5168, "Price_EUR": 114807, "Condition": "Used - Excellent", "Fuel_Type": "Diesel", "Transmission": "Hydrostatic", "Location_Netherlands": "Zwolle", "Status": "Reserved"}, {"Machine_ID": "NL-004", "Category": "Combine Harvester", "Brand": "John Deere", "Model": "S770", "Year": 2018, "Power_HP": 442, "Working_Hours": 5597, "Price_EUR": 389267, "Condition": "New", "Fuel_Type": "Diesel", "Transmission": "Manual", "Location_Netherlands": "Zwolle", "Status": "Available Soon"}, {"Machine_ID": "NL-005", "Category": "Tractor", "Brand": "Fendt", "Model": "724 Vario", "Year": 2017, "Power_HP": 395, "Working_Hours": 6063, "Price_EUR": 136002, "Condition": "Used - Good", "Fuel_Type": "Diesel", "Transmission": "Hydrostatic", "Location_Netherlands": "Utrecht", "Status": "In Stock"}, {"Machine_ID": "NL-006", "Category": "Forage Harvester", "Brand": "Fendt", "Model": "Katana 850", "Year": 2024, "Power_HP": 1049, "Working_Hours": 1927, "Price_EUR": 470690, "Condition": "Demo", "Fuel_Type": "Diesel", "Transmission": "Hydrostatic", "Location_Netherlands": "Utrecht", "Status": "Reserved"}, {"Machine_ID": "NL-007", "Category": "Forage Harvester", "Brand": "John Deere", "Model": "9700", "Year": 2025, "Power_HP": 1027, "Working_Hours": 435, "Price_EUR": 431233, "Condition": "Used - Excellent", "Fuel_Type": "Diesel", "Transmission": "PowerShift", "Location_Netherlands": "Heerenveen", "Status": "In Stock"}, {"Machine_ID": "NL-008", "Category": "Cultivator", "Brand": "Kuhn", "Model": "Cultimer L 300", "Year": 2026, "Power_HP": 183, "Working_Hours": 7055, "Price_EUR": 38889, "Condition": "Demo", "Fuel_Type": "Diesel", "Transmission": "PowerShift", "Location_Netherlands": "Arnhem", "Status": "Sold"}, {"Machine_ID": "NL-009", "Category": "Tractor", "Brand": "New Holland", "Model": "T5.120", "Year": 2024, "Power_HP": 333, "Working_Hours": 4132, "Price_EUR": 231764, "Condition": "Demo", "Fuel_Type": "Diesel", "Transmission": "Manual", "Location_Netherlands": "Eindhoven", "Status": "Available Soon"}, {"Machine_ID": "NL-010", "Category": "Rake", "Brand": "Krone", "Model": "Swadro TC 1370", "Year": 2023, "Power_HP": 276, "Working_Hours": 3338, "Price_EUR": 117368, "Condition": "Used - Good", "Fuel_Type": "Diesel", "Transmission": "Manual", "Location_Netherlands": "Lelystad", "Status": "In Stock"}, {"Machine_ID": "NL-011", "Category": "Tractor", "Brand": "Fendt", "Model": "724 Vario", "Year": 2025, "Power_HP": 334, "Working_Hours": 8040, "Price_EUR": 265645, "Condition": "Used - Good", "Fuel_Type": "Diesel", "Transmission": "PowerShift", "Location_Netherlands": "Zwolle", "Status": "Available Soon"}, {"Machine_ID": "NL-012", "Category": "Baler", "Brand": "Krone", "Model": "Comprima CF155 XC", "Year": 2023, "Power_HP": 210, "Working_Hours": 570, "Price_EUR": 90163, "Condition": "Used - Good", "Fuel_Type": "Diesel", "Transmission": "Manual", "Location_Netherlands": "Arnhem", "Status": "In Stock"}, {"Machine_ID": "NL-013", "Category": "Baler", "Brand": "Krone", "Model": "Fortima F1250", "Year": 2024, "Power_HP": 211, "Working_Hours": 3019, "Price_EUR": 58925, "Condition": "Demo", "Fuel_Type": "Diesel", "Transmission": "Hydrostatic", "Location_Netherlands": "Emmeloord", "Status": "Reserved"}, {"Machine_ID": "NL-014", "Category": "Baler", "Brand": "New Holland", "Model": "Roll Baler 125", "Year": 2020, "Power_HP": 174, "Working_Hours": 6758, "Price_EUR": 37669, "Condition": "Used - Excellent", "Fuel_Type": "Diesel", "Transmission": "Hydrostatic", "Location_Netherlands": "Wageningen", "Status": "In Stock"}, {"Machine_ID": "NL-015", "Category": "Tractor", "Brand": "New Holland", "Model": "T7.270", "Year": 2026, "Power_HP": 100, "Working_Hours": 1380, "Price_EUR": 173287, "Condition": "Used - Excellent", "Fuel_Type": "Diesel", "Transmission": "PowerShift", "Location_Netherlands": "Emmeloord", "Status": "In Stock"}, {"Machine_ID": "NL-016", "Category": "Mower", "Brand": "Krone", "Model": "EasyCut B 950", "Year": 2022, "Power_HP": 189, "Working_Hours": 2555, "Price_EUR": 82395, "Condition": "New", "Fuel_Type": "Diesel", "Transmission": "Manual", "Location_Netherlands": "Breda", "Status": "Available Soon"}, {"Machine_ID": "NL-017", "Category": "Plough", "Brand": "Lemken", "Model": "Diamant 16", "Year": 2025, "Power_HP": 234, "Working_Hours": 3672, "Price_EUR": 47353, "Condition": "Demo", "Fuel_Type": "Diesel", "Transmission": "PowerShift", "Location_Netherlands": "Tilburg", "Status": "Reserved"}, {"Machine_ID": "NL-018", "Category": "Tractor", "Brand": "New Holland", "Model": "T7.270", "Year": 2019, "Power_HP": 313, "Working_Hours": 2237, "Price_EUR": 230257, "Condition": "Used - Good", "Fuel_Type": "Diesel", "Transmission": "Hydrostatic", "Location_Netherlands": "Utrecht", "Status": "Sold"}, {"Machine_ID": "NL-019", "Category": "Sprayer", "Brand": "Amazone", "Model": "UX 4200", "Year": 2017, "Power_HP": 200, "Working_Hours": 1758, "Price_EUR": 168567, "Condition": "Demo", "Fuel_Type": "Diesel", "Transmission": "CVT", "Location_Netherlands": "Heerenveen", "Status": "Reserved"}, {"Machine_ID": "NL-020", "Category": "Seeder", "Brand": "Amazone", "Model": "Cirrus 6003", "Year": 2017, "Power_HP": 190, "Working_Hours": 439, "Price_EUR": 152492, "Condition": "Demo", "Fuel_Type": "Diesel", "Transmission": "Manual", "Location_Netherlands": "Breda", "Status": "Reserved"}, {"Machine_ID": "NL-021", "Category": "Baler", "Brand": "Krone", "Model": "Fortima F1250", "Year": 2024, "Power_HP": 163, "Working_Hours": 7664, "Price_EUR": 40908, "Condition": "Used - Excellent", "Fuel_Type": "Diesel", "Transmission": "PowerShift", "Location_Netherlands": "Tilburg", "Status": "Sold"}, {"Machine_ID": "NL-022", "Category": "Forage Harvester", "Brand": "John Deere", "Model": "9500", "Year": 2024, "Power_HP": 1088, "Working_Hours": 3842, "Price_EUR": 356380, "Condition": "New", "Fuel_Type": "Diesel", "Transmission": "Hydrostatic", "Location_Netherlands": "Lelystad", "Status": "Sold"}, {"Machine_ID": "NL-023", "Category": "Seeder", "Brand": "Amazone", "Model": "Cirrus 6003", "Year": 2025, "Power_HP": 144, "Working_Hours": 809, "Price_EUR": 35929, "Condition": "Demo", "Fuel_Type": "Diesel", "Transmission": "PowerShift", "Location_Netherlands": "Arnhem", "Status": "In Stock"}, {"Machine_ID": "NL-024", "Category": "Tractor", "Brand": "Fendt", "Model": "516 Vario", "Year": 2025, "Power_HP": 371, "Working_Hours": 2276, "Price_EUR": 112337, "Condition": "Used - Excellent", "Fuel_Type": "Diesel", "Transmission": "PowerShift", "Location_Netherlands": "Utrecht", "Status": "Reserved"}, {"Machine_ID": "NL-025", "Category": "Forage Harvester", "Brand": "John Deere", "Model": "9500", "Year": 2018, "Power_HP": 995, "Working_Hours": 6298, "Price_EUR": 397100, "Condition": "Used - Good", "Fuel_Type": "Diesel", "Transmission": "PowerShift", "Location_Netherlands": "Apeldoorn", "Status": "Sold"}, {"Machine_ID": "NL-026", "Category": "Tractor", "Brand": "Case IH", "Model": "Maxxum 125", "Year": 2023, "Power_HP": 337, "Working_Hours": 4733, "Price_EUR": 185443, "Condition": "Demo", "Fuel_Type": "Diesel", "Transmission": "PowerShift", "Location_Netherlands": "Apeldoorn", "Status": "Available Soon"}, {"Machine_ID": "NL-027", "Category": "Baler", "Brand": "Krone", "Model": "Fortima F1250", "Year": 2025, "Power_HP": 110, "Working_Hours": 4506, "Price_EUR": 94107, "Condition": "New", "Fuel_Type": "Diesel", "Transmission": "PowerShift", "Location_Netherlands": "Groningen", "Status": "In Stock"}, {"Machine_ID": "NL-028", "Category": "Tractor", "Brand": "New Holland", "Model": "T7.270", "Year": 2022, "Power_HP": 332, "Working_Hours": 6704, "Price_EUR": 224260, "Condition": "Used - Excellent", "Fuel_Type": "Diesel", "Transmission": "CVT", "Location_Netherlands": "Apeldoorn", "Status": "Sold"}, {"Machine_ID": "NL-029", "Category": "Combine Harvester", "Brand": "John Deere", "Model": "S770", "Year": 2025, "Power_HP": 537, "Working_Hours": 3567, "Price_EUR": 420066, "Condition": "New", "Fuel_Type": "Diesel", "Transmission": "Manual", "Location_Netherlands": "Eindhoven", "Status": "Sold"}, {"Machine_ID": "NL-030", "Category": "Sprayer", "Brand": "John Deere", "Model": "R732i", "Year": 2021, "Power_HP": 225, "Working_Hours": 2192, "Price_EUR": 217542, "Condition": "New", "Fuel_Type": "Diesel", "Transmission": "CVT", "Location_Netherlands": "Utrecht", "Status": "Sold"}, {"Machine_ID": "NL-031", "Category": "Tractor", "Brand": "New Holland", "Model": "T8.410", "Year": 2022, "Power_HP": 130, "Working_Hours": 3059, "Price_EUR": 253996, "Condition": "New", "Fuel_Type": "Diesel", "Transmission": "Manual", "Location_Netherlands": "Zwolle", "Status": "In Stock"}, {"Machine_ID": "NL-032", "Category": "Combine Harvester", "Brand": "New Holland", "Model": "CX6.90", "Year": 2021, "Power_HP": 411, "Working_Hours": 4216, "Price_EUR": 204615, "Condition": "New", "Fuel_Type": "Diesel", "Transmission": "CVT", "Location_Netherlands": "Utrecht", "Status": "Reserved"}, {"Machine_ID": "NL-033", "Category": "Forage Harvester", "Brand": "John Deere", "Model": "9700", "Year": 2018, "Power_HP": 465, "Working_Hours": 3873, "Price_EUR": 210047, "Condition": "New", "Fuel_Type": "Diesel", "Transmission": "Manual", "Location_Netherlands": "Emmeloord", "Status": "In Stock"}, {"Machine_ID": "NL-034", "Category": "Plough", "Brand": "Lemken", "Model": "Juwel 8", "Year": 2022, "Power_HP": 193, "Working_Hours": 7491, "Price_EUR": 103830, "Condition": "New", "Fuel_Type": "Diesel", "Transmission": "Hydrostatic", "Location_Netherlands": "Apeldoorn", "Status": "Sold"}, {"Machine_ID": "NL-035", "Category": "Seeder", "Brand": "Väderstad", "Model": "Rapid A 400S", "Year": 2018, "Power_HP": 218, "Working_Hours": 6150, "Price_EUR": 85852, "Condition": "Used - Good", "Fuel_Type": "Diesel", "Transmission": "Hydrostatic", "Location_Netherlands": "Zwolle", "Status": "Reserved"}, {"Machine_ID": "NL-036", "Category": "Tractor", "Brand": "John Deere", "Model": "8R 310", "Year": 2021, "Power_HP": 323, "Working_Hours": 5435, "Price_EUR": 61203, "Condition": "Used - Good", "Fuel_Type": "Diesel", "Transmission": "CVT", "Location_Netherlands": "Zwolle", "Status": "Available Soon"}, {"Machine_ID": "NL-037", "Category": "Combine Harvester", "Brand": "New Holland", "Model": "CR7.90", "Year": 2025, "Power_HP": 549, "Working_Hours": 5631, "Price_EUR": 130627, "Condition": "Used - Excellent", "Fuel_Type": "Diesel", "Transmission": "CVT", "Location_Netherlands": "Venlo", "Status": "In Stock"}, {"Machine_ID": "NL-038", "Category": "Tractor", "Brand": "Fendt", "Model": "828 Vario", "Year": 2017, "Power_HP": 162, "Working_Hours": 2079, "Price_EUR": 86007, "Condition": "Used - Good", "Fuel_Type": "Diesel", "Transmission": "Manual", "Location_Netherlands": "Lelystad", "Status": "Available Soon"}, {"Machine_ID": "NL-039", "Category": "Sprayer", "Brand": "John Deere", "Model": "R962i", "Year": 2023, "Power_HP": 182, "Working_Hours": 6313, "Price_EUR": 163315, "Condition": "Demo", "Fuel_Type": "Diesel", "Transmission": "Hydrostatic", "Location_Netherlands": "Breda", "Status": "Sold"}, {"Machine_ID": "NL-040", "Category": "Tedder", "Brand": "Kuhn", "Model": "GF 10802 T", "Year": 2025, "Power_HP": 82, "Working_Hours": 485, "Price_EUR": 60094, "Condition": "Demo", "Fuel_Type": "Diesel", "Transmission": "Manual", "Location_Netherlands": "Assen", "Status": "Sold"}, {"Machine_ID": "NL-041", "Category": "Tractor", "Brand": "Massey Ferguson", "Model": "7719 S", "Year": 2021, "Power_HP": 111, "Working_Hours": 7865, "Price_EUR": 59350, "Condition": "Demo", "Fuel_Type": "Diesel", "Transmission": "Manual", "Location_Netherlands": "Apeldoorn", "Status": "Sold"}, {"Machine_ID": "NL-042", "Category": "Seeder", "Brand": "Väderstad", "Model": "Spirit 600C", "Year": 2019, "Power_HP": 251, "Working_Hours": 642, "Price_EUR": 41723, "Condition": "Used - Good", "Fuel_Type": "Diesel", "Transmission": "Manual", "Location_Netherlands": "Breda", "Status": "Reserved"}, {"Machine_ID": "NL-043", "Category": "Tractor", "Brand": "John Deere", "Model": "8R 310", "Year": 2020, "Power_HP": 105, "Working_Hours": 7729, "Price_EUR": 219589, "Condition": "New", "Fuel_Type": "Diesel", "Transmission": "PowerShift", "Location_Netherlands": "Breda", "Status": "Sold"}, {"Machine_ID": "NL-044", "Category": "Mower", "Brand": "Krone", "Model": "EasyCut F 320", "Year": 2022, "Power_HP": 281, "Working_Hours": 3829, "Price_EUR": 116614, "Condition": "Used - Good", "Fuel_Type": "Diesel", "Transmission": "Manual", "Location_Netherlands": "Heerenveen", "Status": "Sold"}, {"Machine_ID": "NL-045", "Category": "Combine Harvester", "Brand": "John Deere", "Model": "X9 1000", "Year": 2024, "Power_HP": 433, "Working_Hours": 7787, "Price_EUR": 360788, "Condition": "Used - Good", "Fuel_Type": "Diesel", "Transmission": "PowerShift", "Location_Netherlands": "Dronten", "Status": "Available Soon"}, {"Machine_ID": "NL-046", "Category": "Tractor", "Brand": "Fendt", "Model": "724 Vario", "Year": 2022, "Power_HP": 348, "Working_Hours": 6710, "Price_EUR": 56392, "Condition": "New", "Fuel_Type": "Diesel", "Transmission": "PowerShift", "Location_Netherlands": "Emmeloord", "Status": "Reserved"}, {"Machine_ID": "NL-047", "Category": "Combine Harvester", "Brand": "John Deere", "Model": "X9 1000", "Year": 2019, "Power_HP": 529, "Working_Hours": 1670, "Price_EUR": 258944, "Condition": "New", "Fuel_Type": "Diesel", "Transmission": "PowerShift", "Location_Netherlands": "Heerenveen", "Status": "Reserved"}, {"Machine_ID": "NL-048", "Category": "Sprayer", "Brand": "John Deere", "Model": "R732i", "Year": 2023, "Power_HP": 161, "Working_Hours": 8483, "Price_EUR": 173094, "Condition": "Used - Excellent", "Fuel_Type": "Hybrid", "Transmission": "CVT", "Location_Netherlands": "Emmeloord", "Status": "Sold"}, {"Machine_ID": "NL-049", "Category": "Cultivator", "Brand": "Kuhn", "Model": "Excelerator 600", "Year": 2025, "Power_HP": 149, "Working_Hours": 4303, "Price_EUR": 99453, "Condition": "Used - Good", "Fuel_Type": "Diesel", "Transmission": "CVT", "Location_Netherlands": "Venlo", "Status": "Sold"}, {"Machine_ID": "NL-050", "Category": "Tractor", "Brand": "Fendt", "Model": "828 Vario", "Year": 2025, "Power_HP": 249, "Working_Hours": 4698, "Price_EUR": 132408, "Condition": "Used - Good", "Fuel_Type": "Diesel", "Transmission": "PowerShift", "Location_Netherlands": "Utrecht", "Status": "Sold"}, {"Machine_ID": "NL-051", "Category": "Mower", "Brand": "Krone", "Model": "EasyCut F 320", "Year": 2026, "Power_HP": 211, "Working_Hours": 7884, "Price_EUR": 14476, "Condition": "Demo", "Fuel_Type": "Diesel", "Transmission": "Manual", "Location_Netherlands": "Assen", "Status": "Sold"}, {"Machine_ID": "NL-052", "Category": "Cultivator", "Brand": "Kuhn", "Model": "Excelerator 600", "Year": 2019, "Power_HP": 182, "Working_Hours": 5175, "Price_EUR": 19736, "Condition": "Used - Excellent", "Fuel_Type": "Diesel", "Transmission": "PowerShift", "Location_Netherlands": "Lelystad", "Status": "In Stock"}, {"Machine_ID": "NL-053", "Category": "Baler", "Brand": "New Holland", "Model": "BigBaler 1290", "Year": 2017, "Power_HP": 250, "Working_Hours": 6156, "Price_EUR": 117324, "Condition": "New", "Fuel_Type": "Diesel", "Transmission": "Manual", "Location_Netherlands": "Zwolle", "Status": "Sold"}, {"Machine_ID": "NL-054", "Category": "Sprayer", "Brand": "Amazone", "Model": "UX 5200", "Year": 2026, "Power_HP": 189, "Working_Hours": 4085, "Price_EUR": 227154, "Condition": "Used - Excellent", "Fuel_Type": "Diesel", "Transmission": "Manual", "Location_Netherlands": "Arnhem", "Status": "In Stock"}, {"Machine_ID": "NL-055", "Category": "Cultivator", "Brand": "Kuhn", "Model": "Excelerator 600", "Year": 2021, "Power_HP": 68, "Working_Hours": 4959, "Price_EUR": 111928, "Condition": "New", "Fuel_Type": "Diesel", "Transmission": "Manual", "Location_Netherlands": "Arnhem", "Status": "Available Soon"}, {"Machine_ID": "NL-056", "Category": "Tractor", "Brand": "New Holland", "Model": "T5.120", "Year": 2020, "Power_HP": 384, "Working_Hours": 5896, "Price_EUR": 191038, "Condition": "Demo", "Fuel_Type": "Diesel", "Transmission": "Manual", "Location_Netherlands": "Emmeloord", "Status": "In Stock"}, {"Machine_ID": "NL-057", "Category": "Tedder", "Brand": "Kuhn", "Model": "GF 10802 T", "Year": 2024, "Power_HP": 299, "Working_Hours": 5132, "Price_EUR": 35033, "Condition": "Used - Good", "Fuel_Type": "Diesel", "Transmission": "PowerShift", "Location_Netherlands": "Dronten", "Status": "Reserved"}, {"Machine_ID": "NL-058", "Category": "Forage Harvester", "Brand": "John Deere", "Model": "9500", "Year": 2022, "Power_HP": 968, "Working_Hours": 5307, "Price_EUR": 474427, "Condition": "Demo", "Fuel_Type": "Diesel", "Transmission": "Hydrostatic", "Location_Netherlands": "Apeldoorn", "Status": "Sold"}, {"Machine_ID": "NL-059", "Category": "Tractor", "Brand": "Massey Ferguson", "Model": "5713 S", "Year": 2022, "Power_HP": 337, "Working_Hours": 5756, "Price_EUR": 112716, "Condition": "Demo", "Fuel_Type": "Diesel", "Transmission": "Hydrostatic", "Location_Netherlands": "Groningen", "Status": "Sold"}, {"Machine_ID": "NL-060", "Category": "Baler", "Brand": "Krone", "Model": "Fortima F1250", "Year": 2019, "Power_HP": 225, "Working_Hours": 7086, "Price_EUR": 111093, "Condition": "Used - Good", "Fuel_Type": "Diesel", "Transmission": "Manual", "Location_Netherlands": "Heerenveen", "Status": "In Stock"}, {"Machine_ID": "NL-061", "Category": "Combine Harvester", "Brand": "New Holland", "Model": "CR7.90", "Year": 2021, "Power_HP": 386, "Working_Hours": 2401, "Price_EUR": 353019, "Condition": "Used - Good", "Fuel_Type": "Diesel", "Transmission": "PowerShift", "Location_Netherlands": "Apeldoorn", "Status": "Sold"}, {"Machine_ID": "NL-062", "Category": "Sprayer", "Brand": "Amazone", "Model": "Pantera 4504", "Year": 2021, "Power_HP": 347, "Working_Hours": 4828, "Price_EUR": 102305, "Condition": "Demo", "Fuel_Type": "Hybrid", "Transmission": "Hydrostatic", "Location_Netherlands": "Utrecht", "Status": "In Stock"}, {"Machine_ID": "NL-063", "Category": "Sprayer", "Brand": "Amazone", "Model": "Pantera 4504", "Year": 2023, "Power_HP": 333, "Working_Hours": 5538, "Price_EUR": 156289, "Condition": "New", "Fuel_Type": "Hybrid", "Transmission": "Hydrostatic", "Location_Netherlands": "Wageningen", "Status": "Sold"}, {"Machine_ID": "NL-064", "Category": "Forage Harvester", "Brand": "John Deere", "Model": "9500", "Year": 2022, "Power_HP": 810, "Working_Hours": 1003, "Price_EUR": 519856, "Condition": "Demo", "Fuel_Type": "Diesel", "Transmission": "PowerShift", "Location_Netherlands": "Lelystad", "Status": "Reserved"}, {"Machine_ID": "NL-065", "Category": "Sprayer", "Brand": "Amazone", "Model": "Pantera 4504", "Year": 2019, "Power_HP": 329, "Working_Hours": 5492, "Price_EUR": 136105, "Condition": "Demo", "Fuel_Type": "Diesel", "Transmission": "Hydrostatic", "Location_Netherlands": "Apeldoorn", "Status": "In Stock"}, {"Machine_ID": "NL-066", "Category": "Tractor", "Brand": "John Deere", "Model": "7R 250", "Year": 2018, "Power_HP": 212, "Working_Hours": 4421, "Price_EUR": 221794, "Condition": "Used - Good", "Fuel_Type": "Diesel", "Transmission": "CVT", "Location_Netherlands": "Assen", "Status": "Sold"}, {"Machine_ID": "NL-067", "Category": "Tedder", "Brand": "Kuhn", "Model": "GF 13012 T", "Year": 2021, "Power_HP": 167, "Working_Hours": 6072, "Price_EUR": 146988, "Condition": "New", "Fuel_Type": "Diesel", "Transmission": "PowerShift", "Location_Netherlands": "Eindhoven", "Status": "In Stock"}, {"Machine_ID": "NL-068", "Category": "Tractor", "Brand": "New Holland", "Model": "T8.410", "Year": 2020, "Power_HP": 179, "Working_Hours": 7613, "Price_EUR": 141503, "Condition": "Used - Excellent", "Fuel_Type": "Diesel", "Transmission": "PowerShift", "Location_Netherlands": "Venlo", "Status": "Reserved"}, {"Machine_ID": "NL-069", "Category": "Tractor", "Brand": "New Holland", "Model": "T7.270", "Year": 2025, "Power_HP": 390, "Working_Hours": 2203, "Price_EUR": 164324, "Condition": "New", "Fuel_Type": "Diesel", "Transmission": "CVT", "Location_Netherlands": "Zwolle", "Status": "Available Soon"}, {"Machine_ID": "NL-070", "Category": "Tractor", "Brand": "John Deere", "Model": "7R 250", "Year": 2025, "Power_HP": 194, "Working_Hours": 3810, "Price_EUR": 199240, "Condition": "Demo", "Fuel_Type": "Diesel", "Transmission": "Manual", "Location_Netherlands": "Apeldoorn", "Status": "Reserved"}, {"Machine_ID": "NL-071", "Category": "Combine Harvester", "Brand": "New Holland", "Model": "CR7.90", "Year": 2021, "Power_HP": 560, "Working_Hours": 8020, "Price_EUR": 371496, "Condition": "Used - Good", "Fuel_Type": "Diesel", "Transmission": "Manual", "Location_Netherlands": "Lelystad", "Status": "Available Soon"}, {"Machine_ID": "NL-072", "Category": "Tractor", "Brand": "Fendt", "Model": "516 Vario", "Year": 2022, "Power_HP": 111, "Working_Hours": 4179, "Price_EUR": 181007, "Condition": "Demo", "Fuel_Type": "Diesel", "Transmission": "PowerShift", "Location_Netherlands": "Apeldoorn", "Status": "Reserved"}, {"Machine_ID": "NL-073", "Category": "Baler", "Brand": "New Holland", "Model": "BigBaler 1290", "Year": 2020, "Power_HP": 182, "Working_Hours": 907, "Price_EUR": 64854, "Condition": "Demo", "Fuel_Type": "Diesel", "Transmission": "CVT", "Location_Netherlands": "Venlo", "Status": "Reserved"}, {"Machine_ID": "NL-074", "Category": "Baler", "Brand": "Krone", "Model": "BiG Pack 1290", "Year": 2025, "Power_HP": 237, "Working_Hours": 5346, "Price_EUR": 36890, "Condition": "Demo", "Fuel_Type": "Diesel", "Transmission": "Manual", "Location_Netherlands": "Breda", "Status": "Reserved"}, {"Machine_ID": "NL-075", "Category": "Combine Harvester", "Brand": "John Deere", "Model": "X9 1000", "Year": 2025, "Power_HP": 342, "Working_Hours": 2876, "Price_EUR": 160930, "Condition": "Used - Good", "Fuel_Type": "Diesel", "Transmission": "Hydrostatic", "Location_Netherlands": "Breda", "Status": "In Stock"}, {"Machine_ID": "NL-076", "Category": "Seeder", "Brand": "Väderstad", "Model": "Rapid A 400S", "Year": 2024, "Power_HP": 154, "Working_Hours": 3966, "Price_EUR": 33784, "Condition": "Used - Excellent", "Fuel_Type": "Diesel", "Transmission": "Hydrostatic", "Location_Netherlands": "Eindhoven", "Status": "Sold"}, {"Machine_ID": "NL-077", "Category": "Baler", "Brand": "New Holland", "Model": "BigBaler 1290", "Year": 2024, "Power_HP": 134, "Working_Hours": 2259, "Price_EUR": 60478, "Condition": "Used - Good", "Fuel_Type": "Diesel", "Transmission": "Manual", "Location_Netherlands": "Breda", "Status": "Available Soon"}, {"Machine_ID": "NL-078", "Category": "Sprayer", "Brand": "Amazone", "Model": "UX 5200", "Year": 2025, "Power_HP": 307, "Working_Hours": 3117, "Price_EUR": 260356, "Condition": "Used - Excellent", "Fuel_Type": "Hybrid", "Transmission": "PowerShift", "Location_Netherlands": "Venlo", "Status": "Sold"}, {"Machine_ID": "NL-079", "Category": "Tractor", "Brand": "Fendt", "Model": "516 Vario", "Year": 2017, "Power_HP": 393, "Working_Hours": 4613, "Price_EUR": 71011, "Condition": "Used - Good", "Fuel_Type": "Diesel", "Transmission": "PowerShift", "Location_Netherlands": "Dronten", "Status": "Reserved"}, {"Machine_ID": "NL-080", "Category": "Sprayer", "Brand": "Amazone", "Model": "UX 5200", "Year": 2019, "Power_HP": 327, "Working_Hours": 7512, "Price_EUR": 163493, "Condition": "Used - Excellent", "Fuel_Type": "Diesel", "Transmission": "CVT", "Location_Netherlands": "Assen", "Status": "Sold"}, {"Machine_ID": "NL-081", "Category": "Plough", "Brand": "Lemken", "Model": "Juwel 8", "Year": 2026, "Power_HP": 89, "Working_Hours": 8043, "Price_EUR": 120505, "Condition": "New", "Fuel_Type": "Diesel", "Transmission": "Manual", "Location_Netherlands": "Groningen", "Status": "Reserved"}, {"Machine_ID": "NL-082", "Category": "Sprayer", "Brand": "Amazone", "Model": "UX 5200", "Year": 2023, "Power_HP": 173, "Working_Hours": 2559, "Price_EUR": 192064, "Condition": "Used - Good", "Fuel_Type": "Diesel", "Transmission": "CVT", "Location_Netherlands": "Arnhem", "Status": "In Stock"}, {"Machine_ID": "NL-083", "Category": "Tractor", "Brand": "John Deere", "Model": "8R 310", "Year": 2026, "Power_HP": 148, "Working_Hours": 4234, "Price_EUR": 147543, "Condition": "Used - Good", "Fuel_Type": "Diesel", "Transmission": "CVT", "Location_Netherlands": "Dronten", "Status": "Sold"}, {"Machine_ID": "NL-084", "Category": "Rake", "Brand": "Krone", "Model": "Swadro 1400", "Year": 2023, "Power_HP": 73, "Working_Hours": 3287, "Price_EUR": 122845, "Condition": "Used - Excellent", "Fuel_Type": "Diesel", "Transmission": "PowerShift", "Location_Netherlands": "Groningen", "Status": "Available Soon"}, {"Machine_ID": "NL-085", "Category": "Tractor", "Brand": "Massey Ferguson", "Model": "6713 S", "Year": 2025, "Power_HP": 290, "Working_Hours": 6933, "Price_EUR": 96553, "Condition": "Demo", "Fuel_Type": "Diesel", "Transmission": "Hydrostatic", "Location_Netherlands": "Heerenveen", "Status": "Reserved"}, {"Machine_ID": "NL-086", "Category": "Cultivator", "Brand": "Kuhn", "Model": "Cultimer L 300", "Year": 2024, "Power_HP": 103, "Working_Hours": 7913, "Price_EUR": 92925, "Condition": "New", "Fuel_Type": "Diesel", "Transmission": "PowerShift", "Location_Netherlands": "Venlo", "Status": "Sold"}, {"Machine_ID": "NL-087", "Category": "Tractor", "Brand": "New Holland", "Model": "T5.120", "Year": 2026, "Power_HP": 140, "Working_Hours": 2609, "Price_EUR": 147782, "Condition": "New", "Fuel_Type": "Diesel", "Transmission": "PowerShift", "Location_Netherlands": "Groningen", "Status": "Available Soon"}, {"Machine_ID": "NL-088", "Category": "Tractor", "Brand": "Massey Ferguson", "Model": "5713 S", "Year": 2025, "Power_HP": 319, "Working_Hours": 2393, "Price_EUR": 62995, "Condition": "Used - Good", "Fuel_Type": "Diesel", "Transmission": "Manual", "Location_Netherlands": "Venlo", "Status": "Reserved"}, {"Machine_ID": "NL-089", "Category": "Forage Harvester", "Brand": "Fendt", "Model": "Katana 850", "Year": 2025, "Power_HP": 459, "Working_Hours": 7559, "Price_EUR": 429862, "Condition": "Used - Good", "Fuel_Type": "Diesel", "Transmission": "Manual", "Location_Netherlands": "Arnhem", "Status": "Sold"}, {"Machine_ID": "NL-090", "Category": "Tractor", "Brand": "New Holland", "Model": "T8.410", "Year": 2020, "Power_HP": 173, "Working_Hours": 5901, "Price_EUR": 201708, "Condition": "Demo", "Fuel_Type": "Diesel", "Transmission": "Hydrostatic", "Location_Netherlands": "Tilburg", "Status": "In Stock"}, {"Machine_ID": "NL-091", "Category": "Plough", "Brand": "Lemken", "Model": "Diamant 16", "Year": 2021, "Power_HP": 221, "Working_Hours": 1311, "Price_EUR": 97524, "Condition": "Demo", "Fuel_Type": "Diesel", "Transmission": "Hydrostatic", "Location_Netherlands": "Apeldoorn", "Status": "In Stock"}, {"Machine_ID": "NL-092", "Category": "Rake", "Brand": "Krone", "Model": "Swadro 1400", "Year": 2017, "Power_HP": 120, "Working_Hours": 1339, "Price_EUR": 89793, "Condition": "New", "Fuel_Type": "Diesel", "Transmission": "CVT", "Location_Netherlands": "Eindhoven", "Status": "Available Soon"}, {"Machine_ID": "NL-093", "Category": "Sprayer", "Brand": "John Deere", "Model": "R732i", "Year": 2026, "Power_HP": 177, "Working_Hours": 7506, "Price_EUR": 171248, "Condition": "Demo", "Fuel_Type": "Hybrid", "Transmission": "CVT", "Location_Netherlands": "Dronten", "Status": "Reserved"}, {"Machine_ID": "NL-094", "Category": "Tractor", "Brand": "Fendt", "Model": "516 Vario", "Year": 2023, "Power_HP": 113, "Working_Hours": 1525, "Price_EUR": 82565, "Condition": "Used - Excellent", "Fuel_Type": "Diesel", "Transmission": "Manual", "Location_Netherlands": "Lelystad", "Status": "In Stock"}, {"Machine_ID": "NL-095", "Category": "Mower", "Brand": "Krone", "Model": "EasyCut F 320", "Year": 2026, "Power_HP": 298, "Working_Hours": 1980, "Price_EUR": 30645, "Condition": "Used - Good", "Fuel_Type": "Diesel", "Transmission": "PowerShift", "Location_Netherlands": "Zwolle", "Status": "Available Soon"}, {"Machine_ID": "NL-096", "Category": "Tractor", "Brand": "Case IH", "Model": "Puma 150", "Year": 2024, "Power_HP": 264, "Working_Hours": 3993, "Price_EUR": 242947, "Condition": "Demo", "Fuel_Type": "Diesel", "Transmission": "PowerShift", "Location_Netherlands": "Eindhoven", "Status": "Reserved"}, {"Machine_ID": "NL-097", "Category": "Forage Harvester", "Brand": "John Deere", "Model": "9700", "Year": 2020, "Power_HP": 492, "Working_Hours": 3039, "Price_EUR": 436352, "Condition": "Demo", "Fuel_Type": "Diesel", "Transmission": "PowerShift", "Location_Netherlands": "Assen", "Status": "In Stock"}, {"Machine_ID": "NL-098", "Category": "Sprayer", "Brand": "John Deere", "Model": "R962i", "Year": 2023, "Power_HP": 271, "Working_Hours": 7930, "Price_EUR": 224809, "Condition": "New", "Fuel_Type": "Diesel", "Transmission": "PowerShift", "Location_Netherlands": "Utrecht", "Status": "In Stock"}, {"Machine_ID": "NL-099", "Category": "Sprayer", "Brand": "Amazone", "Model": "UX 4200", "Year": 2019, "Power_HP": 269, "Working_Hours": 4847, "Price_EUR": 275678, "Condition": "Used - Excellent", "Fuel_Type": "Hybrid", "Transmission": "Manual", "Location_Netherlands": "Zwolle", "Status": "Available Soon"}, {"Machine_ID": "NL-100", "Category": "Mower", "Brand": "Krone", "Model": "EasyCut F 320", "Year": 2022, "Power_HP": 198, "Working_Hours": 2745, "Price_EUR": 18893, "Condition": "New", "Fuel_Type": "Diesel", "Transmission": "Manual", "Location_Netherlands": "Assen", "Status": "Sold"}];
+
+
+// ==========================================================
+// NORMALIZE TEXT
+// ==========================================================
+// IMPORTANT FIX
+// This makes filtering ignore:
+// - spaces
+// - capital letters
+// - hidden whitespace
+// ==========================================================
+
+function normalize(value) {
+
+    return String(value ?? "")
+        .trim()
+        .replace(/\s+/g, " ")
+        .toLowerCase();
+
+}
+
+
+// ==========================================================
+// FILTER INITIALIZATION
+// ==========================================================
+
+function initializeFilters() {
+
+    const categories =
+        [...new Set(
+            originalData.map(
+                row => String(row.Category).trim()
+            )
+        )]
+        .filter(Boolean)
+        .sort();
+
+
+    const brands =
+        [...new Set(
+            originalData.map(
+                row => String(row.Brand).trim()
+            )
+        )]
+        .filter(Boolean)
+        .sort();
+
+
+    const statuses =
+        [...new Set(
+            originalData.map(
+                row => String(row.Status).trim()
+            )
+        )]
+        .filter(Boolean)
+        .sort();
+
+
+    const categorySelect =
+        document.getElementById(
+            "categoryFilter"
+        );
+
+
+    const brandSelect =
+        document.getElementById(
+            "brandFilter"
+        );
+
+
+    const statusSelect =
+        document.getElementById(
+            "statusFilter"
+        );
+
+
+    categories.forEach(
+        value => {
+
+            let option =
+                document.createElement(
+                    "option"
+                );
+
+            option.value = value;
+
+            option.textContent = value;
+
+            categorySelect.appendChild(
+                option
+            );
+
+        }
+    );
+
+
+    brands.forEach(
+        value => {
+
+            let option =
+                document.createElement(
+                    "option"
+                );
+
+            option.value = value;
+
+            option.textContent = value;
+
+            brandSelect.appendChild(
+                option
+            );
+
+        }
+    );
+
+
+    statuses.forEach(
+        value => {
+
+            let option =
+                document.createElement(
+                    "option"
+                );
+
+            option.value = value;
+
+            option.textContent = value;
+
+            statusSelect.appendChild(
+                option
+            );
+
+        }
+    );
+
+}
+
+
+// ==========================================================
+// FILTER DATA
+// ==========================================================
+
+function getFilteredData() {
+
+    const selectedCategory =
+        normalize(
+            document.getElementById(
+                "categoryFilter"
+            ).value
+        );
+
+
+    const selectedBrand =
+        normalize(
+            document.getElementById(
+                "brandFilter"
+            ).value
+        );
+
+
+    const selectedStatus =
+        normalize(
+            document.getElementById(
+                "statusFilter"
+            ).value
+        );
+
+
+    const search =
+        normalize(
+            document.getElementById(
+                "searchBox"
+            ).value
+        );
+
+
+    return originalData.filter(
+        row => {
+
+            const category =
+                normalize(row.Category);
+
+            const brand =
+                normalize(row.Brand);
+
+            const status =
+                normalize(row.Status);
+
+            const model =
+                normalize(row.Model);
+
+            const categoryMatch =
+                selectedCategory === "all" ||
+                category === selectedCategory;
+
+
+            const brandMatch =
+                selectedBrand === "all" ||
+                brand === selectedBrand;
+
+
+            const statusMatch =
+                selectedStatus === "all" ||
+                status === selectedStatus;
+
+
+            const searchMatch =
+                search === "" ||
+
+                brand.includes(search) ||
+
+                model.includes(search) ||
+
+                category.includes(search);
+
+
+            return (
+                categoryMatch &&
+                brandMatch &&
+                statusMatch &&
+                searchMatch
+            );
+
+        }
+    );
+
+}
+
+
+// ==========================================================
+// EURO FORMAT
+// ==========================================================
+
+function euro(value) {
+
+    return new Intl.NumberFormat(
+        "en-US",
+        {
+            style: "currency",
+            currency: "EUR",
+            maximumFractionDigits: 0
+        }
+    ).format(value || 0);
+
+}
+
+
+// ==========================================================
+// UPDATE KPIs
+// ==========================================================
+
+function updateKPIs(filtered) {
+
+    const total =
+        filtered.length;
+
+
+    const inventory =
+        filtered.reduce(
+            (sum,row) =>
+            sum +
+            Number(row.Price_EUR || 0),
+            0
+        );
+
+
+    const averagePrice =
+        total
+        ? inventory / total
+        : 0;
+
+
+    const averageHours =
+        total
+        ? filtered.reduce(
+            (sum,row) =>
+            sum +
+            Number(
+                row.Working_Hours || 0
+            ),
+            0
+        ) / total
+        : 0;
+
+
+    const stock =
+        filtered.filter(
+            row =>
+            normalize(row.Status)
+            === "in stock"
+        ).length;
+
+
+    document.getElementById(
+        "totalMachines"
+    ).textContent =
+        total;
+
+
+    document.getElementById(
+        "inventoryValue"
+    ).textContent =
+        euro(inventory);
+
+
+    document.getElementById(
+        "averagePrice"
+    ).textContent =
+        euro(averagePrice);
+
+
+    document.getElementById(
+        "averageHours"
+    ).textContent =
+        Math.round(
+            averageHours
+        ).toLocaleString();
+
+
+    document.getElementById(
+        "inStock"
+    ).textContent =
+        stock;
+
+}
+
+
+// ==========================================================
+// EMPTY CHART MESSAGE
+// ==========================================================
+
+function emptyChart(
+    elementId,
+    title
+) {
+
+    Plotly.newPlot(
+        elementId,
+        [],
+        {
+            title: {
+                text: title,
+                font: {
+                    size: 20,
+                    color: "#12372A"
+                }
+            },
+            annotations: [{
+                text:
+                "No matching data",
+                showarrow: false,
+                font: {
+                    size: 16,
+                    color: "#C76D4F"
+                }
+            }],
+            paper_bgcolor: "white",
+            plot_bgcolor: "white"
+        },
+        {
+            responsive: true
+        }
+    );
+
+}
+
+
+// ==========================================================
+// CATEGORY CHART
+// ==========================================================
+
+function categoryChart(filtered) {
+
+    if (!filtered.length) {
+        emptyChart(
+            "categoryChart",
+            "🚜 Machines by Category"
+        );
+        return;
+    }
+
+
+    const counts = {};
+
+
+    filtered.forEach(
+        row => {
+
+            const key =
+                row.Category;
+
+            counts[key] =
+                (counts[key] || 0)
+                + 1;
+
+        }
+    );
+
+
+    const entries =
+        Object.entries(counts)
+        .sort(
+            (a,b) => a[1] - b[1]
+        );
+
+
+    Plotly.newPlot(
+        "categoryChart",
+        [{
+            x:
+                entries.map(x => x[1]),
+
+            y:
+                entries.map(x => x[0]),
+
+            type: "bar",
+
+            orientation: "h",
+
+            marker: {
+                color: "#2E8B57"
+            }
+        }],
+        {
+            title: {
+                text:
+                "🚜 Machines by Category",
+
+                font: {
+                    size: 20,
+                    color: "#12372A"
+                }
+            },
+
+            paper_bgcolor: "white",
+
+            plot_bgcolor: "white",
+
+            margin: {
+                l: 130,
+                r: 30,
+                t: 60,
+                b: 50
+            }
+        },
+        {
+            responsive: true
+        }
+    );
+
+}
+
+
+// ==========================================================
+// BRAND CHART
+// ==========================================================
+
+function brandChart(filtered) {
+
+    if (!filtered.length) {
+        emptyChart(
+            "brandChart",
+            "🏭 Top Machinery Brands"
+        );
+        return;
+    }
+
+
+    const counts = {};
+
+
+    filtered.forEach(
+        row => {
+
+            const key =
+                row.Brand;
+
+            counts[key] =
+                (counts[key] || 0)
+                + 1;
+
+        }
+    );
+
+
+    const entries =
+        Object.entries(counts)
+        .sort(
+            (a,b) => b[1] - a[1]
+        )
+        .slice(0,10);
+
+
+    Plotly.newPlot(
+        "brandChart",
+        [{
+            x:
+                entries.map(x => x[1]),
+
+            y:
+                entries.map(x => x[0]),
+
+            type: "bar",
+
+            orientation: "h",
+
+            marker: {
+                color: "#4F8A7A"
+            }
+        }],
+        {
+            title: {
+                text:
+                "🏭 Top Machinery Brands",
+
+                font: {
+                    size: 20,
+                    color: "#12372A"
+                }
+            },
+
+            paper_bgcolor: "white",
+
+            plot_bgcolor: "white",
+
+            margin: {
+                l: 130,
+                r: 30,
+                t: 60,
+                b: 50
+            }
+        },
+        {
+            responsive: true
+        }
+    );
+
+}
+
+
+// ==========================================================
+// PRICE CHART
+// ==========================================================
+
+function priceChart(filtered) {
+
+    if (!filtered.length) {
+        emptyChart(
+            "priceChart",
+            "💰 Average Price by Category"
+        );
+        return;
+    }
+
+
+    const groups = {};
+
+
+    filtered.forEach(
+        row => {
+
+            if (!groups[row.Category]) {
+                groups[row.Category] = [];
+            }
+
+            groups[row.Category].push(
+                Number(row.Price_EUR || 0)
+            );
+
+        }
+    );
+
+
+    const categories =
+        Object.keys(groups);
+
+
+    const averages =
+        categories.map(
+            category => {
+
+                const values =
+                    groups[category];
+
+                return values.reduce(
+                    (a,b) => a+b,
+                    0
+                ) / values.length;
+
+            }
+        );
+
+
+    Plotly.newPlot(
+        "priceChart",
+        [{
+            x: categories,
+
+            y: averages,
+
+            type: "bar",
+
+            marker: {
+                color: "#D4A72C"
+            }
+        }],
+        {
+            title: {
+                text:
+                "💰 Average Price by Category",
+
+                font: {
+                    size: 20,
+                    color: "#12372A"
+                }
+            },
+
+            paper_bgcolor: "white",
+
+            plot_bgcolor: "white",
+
+            yaxis: {
+                title:
+                "Average Price (€)"
+            }
+        },
+        {
+            responsive: true
+        }
+    );
+
+}
+
+
+// ==========================================================
+// STATUS CHART
+// ==========================================================
+
+function statusChart(filtered) {
+
+    if (!filtered.length) {
+        emptyChart(
+            "statusChart",
+            "📦 Inventory Status"
+        );
+        return;
+    }
+
+
+    const counts = {};
+
+
+    filtered.forEach(
+        row => {
+
+            const key =
+                row.Status;
+
+            counts[key] =
+                (counts[key] || 0)
+                + 1;
+
+        }
+    );
+
+
+    Plotly.newPlot(
+        "statusChart",
+        [{
+            labels:
+                Object.keys(counts),
+
+            values:
+                Object.values(counts),
+
+            type: "pie",
+
+            hole: .55,
+
+            marker: {
+                colors: [
+                    "#2E8B57",
+                    "#D4A72C",
+                    "#4F8A7A",
+                    "#C76D4F"
+                ]
+            }
+        }],
+        {
+            title: {
+                text:
+                "📦 Inventory Status",
+
+                font: {
+                    size: 20,
+                    color: "#12372A"
+                }
+            },
+
+            paper_bgcolor:
+            "white"
+        },
+        {
+            responsive: true
+        }
+    );
+
+}
+
+
+// ==========================================================
+// SCATTER CHART
+// ==========================================================
+
+function scatterChart(filtered) {
+
+    if (!filtered.length) {
+        emptyChart(
+            "scatterChart",
+            "📈 Price vs Working Hours"
+        );
+        return;
+    }
+
+
+    const groups = {};
+
+
+    filtered.forEach(
+        row => {
+
+            const category =
+                row.Category;
+
+
+            if (!groups[category]) {
+
+                groups[category] = {
+                    x: [],
+                    y: [],
+                    text: []
+                };
+
+            }
+
+
+            groups[category].x.push(
+                Number(
+                    row.Working_Hours || 0
+                )
+            );
+
+
+            groups[category].y.push(
+                Number(
+                    row.Price_EUR || 0
+                )
+            );
+
+
+            groups[category].text.push(
+                row.Brand +
+                " " +
+                row.Model
+            );
+
+        }
+    );
+
+
+    const traces =
+        Object.keys(groups)
+        .map(
+            category => ({
+
+                x:
+                    groups[category].x,
+
+                y:
+                    groups[category].y,
+
+                text:
+                    groups[category].text,
+
+                mode:
+                    "markers",
+
+                type:
+                    "scatter",
+
+                name:
+                    category,
+
+                marker: {
+                    size: 10
+                }
+
+            })
+        );
+
+
+    Plotly.newPlot(
+        "scatterChart",
+        traces,
+        {
+            title: {
+                text:
+                "📈 Price vs Working Hours",
+
+                font: {
+                    size: 20,
+                    color: "#12372A"
+                }
+            },
+
+            xaxis: {
+                title:
+                "Working Hours"
+            },
+
+            yaxis: {
+                title:
+                "Price (€)"
+            },
+
+            paper_bgcolor:
+            "white",
+
+            plot_bgcolor:
+            "white"
+        },
+        {
+            responsive: true
+        }
+    );
+
+}
+
+
+// ==========================================================
+// CONDITION CHART
+// ==========================================================
+
+function conditionChart(filtered) {
+
+    if (!filtered.length) {
+        emptyChart(
+            "conditionChart",
+            "🔧 Average Price by Condition"
+        );
+        return;
+    }
+
+
+    const groups = {};
+
+
+    filtered.forEach(
+        row => {
+
+            const condition =
+                row.Condition ||
+                "Unknown";
+
+
+            if (!groups[condition]) {
+                groups[condition] = [];
+            }
+
+
+            groups[condition].push(
+                Number(
+                    row.Price_EUR || 0
+                )
+            );
+
+        }
+    );
+
+
+    const labels =
+        Object.keys(groups);
+
+
+    const values =
+        labels.map(
+            condition => {
+
+                const arr =
+                    groups[condition];
+
+                return arr.reduce(
+                    (a,b) => a+b,
+                    0
+                ) / arr.length;
+
+            }
+        );
+
+
+    Plotly.newPlot(
+        "conditionChart",
+        [{
+            x: labels,
+
+            y: values,
+
+            type: "bar",
+
+            marker: {
+                color: "#A8C3B0"
+            }
+        }],
+        {
+            title: {
+                text:
+                "🔧 Average Price by Condition",
+
+                font: {
+                    size: 20,
+                    color: "#12372A"
+                }
+            },
+
+            yaxis: {
+                title:
+                "Average Price (€)"
+            },
+
+            paper_bgcolor:
+            "white",
+
+            plot_bgcolor:
+            "white"
+        },
+        {
+            responsive: true
+        }
+    );
+
+}
+
+
+// ==========================================================
+// TABLE
+// ==========================================================
+
+function updateTable(filtered) {
+
+    const tbody =
+        document.querySelector(
+            "#dataTable tbody"
+        );
+
+
+    const noResults =
+        document.getElementById(
+            "noResults"
+        );
+
+
+    tbody.innerHTML = "";
+
+
+    if (!filtered.length) {
+
+        noResults.style.display =
+            "block";
+
+        return;
+
+    } else {
+
+        noResults.style.display =
+            "none";
+
+    }
+
+
+    filtered.forEach(
+        row => {
+
+            const tr =
+                document.createElement(
+                    "tr"
+                );
+
+
+            tr.innerHTML = `
+
+                <td>
+                    ${row.Brand || ""}
+                </td>
+
+                <td>
+                    ${row.Model || ""}
+                </td>
+
+                <td>
+                    ${row.Category || ""}
+                </td>
+
+                <td>
+                    ${row.Year || ""}
+                </td>
+
+                <td>
+                    ${euro(
+                        Number(
+                            row.Price_EUR || 0
+                        )
+                    )}
+                </td>
+
+                <td>
+                    ${
+                        Number(
+                            row.Working_Hours || 0
+                        ).toLocaleString()
+                    }
+                </td>
+
+                <td>
+                    ${row.Condition || ""}
+                </td>
+
+                <td>
+                    ${row.Status || ""}
+                </td>
+
+            `;
+
+
+            tbody.appendChild(
+                tr
+            );
+
+        }
+    );
+
+}
+
+
+// ==========================================================
+// MAIN UPDATE
+// ==========================================================
+
+function updateDashboard() {
+
+    const filtered =
+        getFilteredData();
+
+
+    updateKPIs(
+        filtered
+    );
+
+
+    categoryChart(
+        filtered
+    );
+
+
+    brandChart(
+        filtered
+    );
+
+
+    priceChart(
+        filtered
+    );
+
+
+    statusChart(
+        filtered
+    );
+
+
+    scatterChart(
+        filtered
+    );
+
+
+    conditionChart(
+        filtered
+    );
+
+
+    updateTable(
+        filtered
+    );
+
+}
+
+
+// ==========================================================
+// RESET
+// ==========================================================
+
+function resetFilters() {
+
+    document.getElementById(
+        "categoryFilter"
+    ).value = "All";
+
+
+    document.getElementById(
+        "brandFilter"
+    ).value = "All";
+
+
+    document.getElementById(
+        "statusFilter"
+    ).value = "All";
+
+
+    document.getElementById(
+        "searchBox"
+    ).value = "";
+
+
+    updateDashboard();
+
+}
+
+
+// ==========================================================
+// START
+// ==========================================================
+
+initializeFilters();
+
+updateDashboard();
+
+
+</script>
+
+</body>
+
+</html>
